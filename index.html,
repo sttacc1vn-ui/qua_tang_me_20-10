@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tặng Mẹ Yêu 20/10 ❤️</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(160deg,#26051f,#851747,#180b36);
+  background-size: 300% 300%;
+  animation: bg 8s ease infinite;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+}
+
+@keyframes bg {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 550px;
+  margin: auto;
+  padding: 28px 18px 50px;
+}
+
+h1 {
+  color: #ffd1e5;
+  font-size: clamp(28px, 8vw, 43px);
+  animation: shine 1.5s infinite alternate;
+}
+
+@keyframes shine {
+  to { text-shadow: 0 0 25px #ff4f9a, 0 0 45px #ff9bc8; }
+}
+
+.bouquet {
+  font-size: 90px;
+  animation: dance 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes dance {
+  0%,100% { transform: rotate(-10deg) scale(1); }
+  50% { transform: rotate(10deg) scale(1.13); }
+}
+
+.card {
+  padding: 22px 17px;
+  border-radius: 25px;
+  background: #ffffff17;
+  border: 1px solid #ffb9d8;
+  box-shadow: 0 0 30px #ff64aa55;
+  backdrop-filter: blur(5px);
+  animation: appear 1.5s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message {
+  line-height: 1.9;
+  font-size: 16px;
+}
+
+.gold { color: #ffe39d; font-weight: bold; }
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 14px 23px;
+  margin-top: 18px;
+  background: linear-gradient(90deg,#ff438c,#ff9fca);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 0 20px #ff70b5;
+  cursor: pointer;
+}
+
+#letter {
+  display: none;
+  color: #ffe39d;
+  font-size: 20px;
+  line-height: 1.8;
+  animation: appear 1s ease;
+}
+
+.fall {
+  position: fixed;
+  top: -40px;
+  z-index: 1;
+  pointer-events: none;
+  animation: falling linear forwards;
+}
+
+@keyframes falling {
+  to {
+    transform: translateY(115vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.float {
+  position: fixed;
+  bottom: -50px;
+  pointer-events: none;
+  z-index: 1;
+  animation: up linear forwards;
+}
+
+@keyframes up {
+  to {
+    transform: translateY(-115vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+#fireworks {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+footer { margin-top: 25px; color: #ffd1e5; }
+</style>
+</head>
+
+<body>
+<canvas id="fireworks"></canvas>
+
+<main class="container">
+  <p style="letter-spacing:4px;color:#ffe39d">
+    ✨ 20 - 10 - 2026 ✨
+  </p>
+
+  <h1>Chúc Mừng Ngày 20/10</h1>
+
+  <div class="bouquet">💐</div>
+
+  <h2 style="color:#ffe39d">Mẹ Yêu Của Con ❤️</h2>
+
+  <section class="card">
+    <div style="font-size:30px">🌹 💖 🌹</div>
+
+    <p class="message">
+      Mẹ yêu dấu của con!<br>
+      Nhân ngày 20/10, con chúc mẹ luôn
+<span class="gold">mạnh khỏe, xinh đẹp,
+      bình an và hạnh phúc.</span><br><br>
+
+      Cảm ơn mẹ đã dành cho con tình yêu
+      thương bao la, những tháng ngày hy sinh
+      và vòng tay ấm áp.<br><br>
+
+      Con mong mẹ luôn mỉm cười,
+      mọi điều tốt đẹp sẽ đến với mẹ.
+      Con sẽ cố gắng trưởng thành để mẹ
+      luôn tự hào và vui lòng.<br><br>
+
+      <span class="gold">
+        Con yêu mẹ nhiều lắm! ❤️
+      </span>
+    </p>
+
+    <div style="font-size:30px">🌷 💗 🌷</div>
+  </section>
+
+  <button onclick="openLetter()">
+    🎁 Bấm để nhận bất ngờ
+  </button>
+
+  <div id="letter">
+    💖 MẸ LÀ ĐIỀU TUYỆT VỜI NHẤT! 💖<br>
+    🌹 Con yêu mẹ hơn mọi lời nói! 🌹<br>
+    Chúc mẹ 20/10 ngập tràn yêu thương!
+  </div>
+
+  <button onclick="celebrate()">
+    🎆 Bắn pháo hoa
+  </button>
+
+  <footer>
+    ❤️ Món quà nhỏ, tình yêu lớn dành cho mẹ ❤️
+  </footer>
+</main>
+
+<script>
+// Hoa và trái tim rơi liên tục
+const flowers = ["🌹","🌸","🌷","💮","💖","❤️","✨"];
+
+function makeFlower() {
+  const el = document.createElement("div");
+  el.className = "fall";
+  el.textContent = flowers[Math.floor(Math.random()*flowers.length)];
+  el.style.left = Math.random()*100 + "vw";
+  el.style.fontSize = (16+Math.random()*23) + "px";
+  el.style.animationDuration = (4+Math.random()*5) + "s";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 9500);
+}
+
+setInterval(makeFlower, 250);
+
+// Trái tim bay từ dưới lên
+function makeHeart() {
+  const el = document.createElement("div");
+  el.className = "float";
+  el.textContent = ["❤️","💕","💗","💝"][Math.floor(Math.random()*4)];
+  el.style.left = Math.random()*100 + "vw";
+  el.style.fontSize = (20+Math.random()*25) + "px";
+  el.style.animationDuration = (4+Math.random()*4) + "s";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 8500);
+}
+
+setInterval(makeHeart, 650);
+
+// Lời chúc bất ngờ
+function openLetter() {
+  document.getElementById("letter").style.display = "block";
+  celebrate();
+}
+
+// Pháo hoa bằng canvas
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+let particles = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+function burst(x,y) {
+  for (let i=0; i<85; i++) {
+    const angle = Math.random()*Math.PI*2;
+    const speed = 1+Math.random()*5;
+    particles.push({
+      x,y,
+      vx: Math.cos(angle)*speed,
+      vy: Math.sin(angle)*speed,
+      life: 70,
+      color: `hsl(${Math.random()*360},100%,70%)`
+    });
+  }
+}
+
+function celebrate() {
+  burst(Math.random()*canvas.width, canvas.height*0.35);
+  burst(Math.random()*canvas.width, canvas.height*0.45);
+}
+
+function animate() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+particles = particles.filter(p => p.life > 0);
+
+  for (const p of particles) {
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,3,0,Math.PI*2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.035;
+    p.life--;
+  }
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+// Pháo hoa nhẹ xuất hiện định kỳ
+setInterval(() => {
+  burst(
+    canvas.width*(0.15+Math.random()*0.7),
+    canvas.height*(0.12+Math.random()*0.4)
+  );
+}, 2200);
+</script>
+</body>
+</html>
